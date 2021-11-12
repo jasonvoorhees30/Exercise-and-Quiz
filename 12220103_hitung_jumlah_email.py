@@ -1,12 +1,7 @@
-# TUGAS 8 PEMROGRAMAN KOMPUTER K-01 
-# MUHAMMAD NAUFAL AQIL ZUHDI (12220103)
-# 9 NOVEMBER 2021
-# PROGRAM HITUNG JUMLAH EMAIL
-
-#Membuka file mbox-short.txt
+#Open the mbox-short.txt file
 fhand = open("mbox-short.txt")
 
-#Membuat list untuk menyimpan alamat email dari baris yang diawali dengan 'From '
+#Create a list to store email addresses from lines starting with 'From '
 list = []
 for line in fhand:
     if not line.startswith("From "): 
@@ -14,7 +9,7 @@ for line in fhand:
     line = line.split()
     list.append(line[1])
 
-#Membuat dictionary berisi key dan value untuk masing-masing alamat email
+#Create a dictionary containing keys and values for each email address
 counts = {}
 for word in list:
     if word not in counts:
@@ -22,16 +17,16 @@ for word in list:
     else:
         counts[word] = counts.get(word,0) + 1
 
-#Membuat tuple dengan mempertimbangkan parameter (value, key) pada dictionary counts lalu memasukkannya ke dalam tmp
+#Create a tuple by considering the parameters (value, key) in the counts dictionary and then inserting it into tmp
 tmp = []
 for key, value in counts.items():
     newtup = (value, key)
     tmp.append(newtup)
 
-#Melakukan sort terhadap tmp untuk mendapatkan urutan nilai dari yang tertinggi
+#Sort tmp to get the order of values from highest
 tmp = sorted(tmp, reverse = True)
 
-print("Tiga besar alamat email dengan pengirim pesan terbanyak adalah:" )
-#Mengambil 3 value tertinggi dari tmp
+print("The top three email addresses with the most message senders are:" )
+#Take the 3 highest values ​​from tmp
 for value, key in tmp[:3]:
-    print(key,"dengan jumlah", value, "pesan")
+    print(key, "with a total of", value, "messages")
